@@ -1,0 +1,1 @@
+;; Environment specific Emacs settings
