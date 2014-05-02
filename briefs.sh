@@ -38,8 +38,9 @@ while test $# -gt 0; do
             render_with_toc=false
             ;;
         *) 
+            filename=$1
+
             if $create_file; then
-                filename=$1
                 if [ -f $filename ]; then
                     echo "File already exists: $filename"
                     exit 0;
@@ -47,8 +48,13 @@ while test $# -gt 0; do
                 cp ~/.briefs/base.org ./$filename
                 sed -i.bak "s/__title__/$title/" ./$filename
                 rm $filename.bak
+
+                exit 0;
             elif $render_file; then                
-                filename=$1
+                if [ ! -f $filename ]; then
+                    echo "File does not exist: $filename"
+                    exit 0;
+                fi
 
                 mkdir -p ./exports/
                 
@@ -59,6 +65,20 @@ while test $# -gt 0; do
                 
                 cp $filename ./exports/$filename
 
+                if [ ! -f ~/.briefs/scopes/$render_scope.el ]; then
+                    echo "Could not find scope: $render_scope"
+                    exit 0;
+                fi
+
+                if [ ! -f ~/.briefs/formats/$render_format.el ]; then
+                    echo "Could not find format: $render_format"
+                    exit 0;
+                fi
+
+                if [ ! -f ~/.briefs/env.el ]; then
+                    touch ~/.briefs/env.el
+                fi
+
                 emacs --batch -Q -L $orgmode_lisp_dir \
                     --visit=./exports/$filename \
                     -l ~/.briefs/env.el \
@@ -67,7 +87,6 @@ while test $# -gt 0; do
                 killall soffice
                 
                 exit 0;
-
             else
                 echo "No Args"
             fi
