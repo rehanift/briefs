@@ -1,4 +1,4 @@
-orgmode_list_dir=~/.briefs/org-mode-current/lisp
+orgmode_lisp_dir=~/.briefs/org-mode-current/lisp
 
 create_file=false
 render_file=false
@@ -50,7 +50,7 @@ while test $# -gt 0; do
             elif $render_file; then
                 filename=$1
                 
-                if [[ ! -d $orgmode_lisp_dir ]]; then
+                if [ ! -d $orgmode_lisp_dir ]; then
                     echo "This is not a valid org-mode lisp directory: $orgmode_lisp_dir"
                     exit 0;
                 fi
