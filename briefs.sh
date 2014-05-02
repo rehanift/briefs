@@ -47,20 +47,27 @@ while test $# -gt 0; do
                 cp ~/.briefs/base.org ./$filename
                 sed -i.bak "s/__title__/$title/" ./$filename
                 rm $filename.bak
-            elif $render_file; then
+            elif $render_file; then                
                 filename=$1
+
+                mkdir -p ./exports/
                 
                 if [ ! -d $orgmode_lisp_dir ]; then
                     echo "This is not a valid org-mode lisp directory: $orgmode_lisp_dir"
                     exit 0;
                 fi
+                
+                cp $filename ./exports/$filename
 
                 emacs --batch -Q -L $orgmode_lisp_dir \
-                    --visit=$filename \
+                    --visit=./exports/$filename \
                     -l ~/.briefs/env.el \
                     -l ~/.briefs/scopes/$render_scope.el \
                     -l ~/.briefs/formats/$render_format.el
                 killall soffice
+                
+                exit 0;
+
             else
                 echo "No Args"
             fi
