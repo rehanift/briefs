@@ -40,12 +40,13 @@ while test $# -gt 0; do
         *) 
             if $create_file; then
                 filename=$1
-                if [[ -f $filename ]]; then
+                if [ -f $filename ]; then
                     echo "File already exists: $filename"
                     exit 0;
                 fi
                 cp ~/.briefs/base.org ./$filename
-                sed -i '' "s/__title__/$title/" ./$filename
+                sed -i.bak "s/__title__/$title/" ./$filename
+                rm $filename.bak
             elif $render_file; then
                 filename=$1
                 
