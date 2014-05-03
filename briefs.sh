@@ -1,5 +1,3 @@
-orgmode_lisp_dir=~/.briefs/org-mode-current/lisp
-
 create_file=false
 render_file=false
 filename=""
@@ -79,7 +77,7 @@ while test $# -gt 0; do
                     touch ~/.briefs/env.el
                 fi
 
-                emacs --batch -Q -L $orgmode_lisp_dir \
+                emacs --batch -Q \
                     --visit=./exports/$filename \
                     -l ~/.briefs/env.el \
                     -l ~/.briefs/scopes/$render_scope.el \
