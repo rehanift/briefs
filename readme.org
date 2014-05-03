@@ -1,0 +1,43 @@
+* Create new brief
+  #+begin_src sh
+    # Create new brief
+    briefs create (--title "[title]") [filename]
+  #+end_src
+  Creates a new /brief/ document. The file is a =.org= file with a default
+  export template.
+
+  - =filename= is the name of the new file to create. It must end in
+    an =.org= extension.
+  - =--title "[title]"= is the title to use for the exported artifact
+
+
+* Render a brief
+  #+BEGIN_SRC sh
+    # Render a new brief
+    briefs render (--format [format]) (--scope [scope]) (--hide-toc) [file]
+  #+END_SRC
+  Renders a /brief/ document of the desired /scope/ to the desired /format/.
+
+  The resulting file(s) are exported to =./exports/= directory.
+  
+  Scopes include:
+  - =full=: (Default) All sections with any tag are rendered.
+  - =development=: All sections without tags and those with =dev= and
+    =future= tags are rendered
+  - =marketing=: All sections without tags and those with
+    =competition= and =future= tags are rendered
+  - =support=: All sections without tags and those with =details=
+    tags are rendered
+  - =documentation=: All sections without tags and those with =details=
+    tags are rendered
+  
+  Formats include:
+  - =pdf=: (Default) First creates an ODT export then creates a PDF
+  - =html=: Creates an HTML export
+  - =presentation=: Uses org-reveal to create a reveal.js HTML5
+    presentation. This export creates a new directory in the export
+    directory with the name =[filename]-presentation= with all
+    dependent files (HTML, JS, CSS).
+  - =doc=: First creates an ODT export then creates a =docx= file.
+  - =odt=: Creates an ODT export
+  - =txt=: Creates a TXT export
