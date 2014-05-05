@@ -1,45 +1,89 @@
-* Create new brief
-  #+begin_src sh
-    # Create new brief
-    briefs create (--title ["title"]) [filename]
-  #+end_src
-  Creates a new /brief/ document. The file is a =.org= file with a default
-  export template.
+* Problem
+  - Product Managers need to iteratively and incrementally document
+    new feature sets. As the lifecycle of the feature set evolves the
+    corresponding documentation must also evolve. For example, early
+    in the lifecyle of a feature set, Development may provide feedback
+    which could alter the the scope of the new feature set. 
+  - Product Managers need to circulate new feature set documentation
+    to multiple audiences, for example: Development, Marketing,
+    Documentation, and Support.
+    - Each audience requires additional information which may not be
+      relevant or appropriate for all audiences. For example, Support
+      does not need to know how the new feature set compares with
+      competitors.
+  - Depending on the maturity of the feature set, the medium for
+    sharing with other audiences may vary. For example, early in the
+    feature set's lifecycle, a presentation with Development is more
+    effective than a Word Document. On the other hand, an immutable
+    PDF may be more appropriate later in the feature set's lifecycle
+    when communicating with Marketing via email.
+  - Managing multiple documents in multiple formats for multiple
+    audiences for the duration of a feature set's lifecycle creates an
+    uneccessary overhead.
+  - Feature set documentation should be tracked with proper version
+    control where changes can be viewed across versions.
+* Solution
+  - A PM can create a single document which contains all information
+    (Development decisions, usage details, pricing information,
+    competitive analysis, etc.) for a new feature set. Sections with
+    specific information can be tagged accordingly.
+  - A PM can render the single document which only includes specific
+    sections for a given audience.
+  - A PM can render the single document into various formats (PDF,
+    Presentation, HTML, Doc).
+  - A PM can track their documents in Git and see accurate and
+    meaninful diffs between commits.
+* Details
+** Requirements
+   - Emacs 24
+   - Org-mode 8
+   - org-reveal
+   - LibreOffice
+   - Git
+** Installation
+** Usage
+*** Create new brief
+    #+begin_src sh
+      # Create new brief
+      briefs create (--title ["title"]) [filename]
+    #+end_src
+    Creates a new /brief/ document. The file is a =.org= file with a default
+    export template.
 
-  - =filename= is the name of the new file to create. It must end in
-    an =.org= extension.
-  - =--title ["title"]= is the title to use for the exported artifact
+    - =filename= is the name of the new file to create. It must end in
+      an =.org= extension.
+    - =--title ["title"]= is the title to use for the exported artifact
 
 
-* Render a brief
-  #+BEGIN_SRC sh
-    # Render a new brief
-    briefs render (--format [format]) (--scope [scope]) (--hide-toc) [file]
-  #+END_SRC
-  Renders a /brief/ document of the desired /scope/ to the desired /format/.
+*** Render a brief
+    #+BEGIN_SRC sh
+      # Render a new brief
+      briefs render (--format [format]) (--scope [scope]) (--hide-toc) [file]
+    #+END_SRC
+    Renders a /brief/ document of the desired /scope/ to the desired /format/.
 
-  The resulting file(s) are exported to =./exports/= directory.
-  
-  Scopes include:
-  - =full=: (Default) All sections with any tag are rendered.
-  - =development=: All sections without any tags and those with
-    =development=, =details= and =future= tags are rendered
-  - =marketing=: All sections without tags and those with =marketing= and 
-    =details=, and =future= tags are rendered
-  - =support=: All sections without tags and those with =details=
-    tags are rendered
-  - =documentation=: All sections without tags and those with =details=
-    tags are rendered
-  - =public=: All sections without tags and those with =details=
-    tags are rendered
-  
-  Formats include:
-  - =pdf=: (Default) First creates an ODT export then creates a PDF
-  - =html=: Creates an HTML export
-  - =presentation=: Uses org-reveal to create a reveal.js HTML5
-    presentation. This export creates a new directory in the export
-    directory with the name =[filename]-presentation= with all
-    dependent files (HTML, JS, CSS).
-  - =doc=: First creates an ODT export then creates a =docx= file.
-  - =odt=: Creates an ODT export
-  - =txt=: Creates a TXT export
+    The resulting file(s) are exported to =./exports/= directory.
+    
+    Scopes include:
+    - =full=: (Default) All sections with any tag are rendered.
+    - =development=: All sections without any tags and those with
+      =development=, =details= and =future= tags are rendered
+    - =marketing=: All sections without tags and those with =marketing= and 
+      =details=, and =future= tags are rendered
+    - =support=: All sections without tags and those with =details=
+      tags are rendered
+    - =documentation=: All sections without tags and those with =details=
+      tags are rendered
+    - =public=: All sections without tags and those with =details=
+      tags are rendered
+    
+    Formats include:
+    - =pdf=: (Default) First creates an ODT export then creates a PDF
+    - =html=: Creates an HTML export
+    - =presentation=: Uses org-reveal to create a reveal.js HTML5
+      presentation. This export creates a new directory in the export
+      directory with the name =[filename]-presentation= with all
+      dependent files (HTML, JS, CSS).
+    - =doc=: First creates an ODT export then creates a =docx= file.
+    - =odt=: Creates an ODT export
+    - =txt=: Creates a TXT export
