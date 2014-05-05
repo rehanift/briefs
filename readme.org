@@ -1,14 +1,14 @@
 * Create new brief
   #+begin_src sh
     # Create new brief
-    briefs create (--title "[title]") [filename]
+    briefs create (--title ["title"]) [filename]
   #+end_src
   Creates a new /brief/ document. The file is a =.org= file with a default
   export template.
 
   - =filename= is the name of the new file to create. It must end in
     an =.org= extension.
-  - =--title "[title]"= is the title to use for the exported artifact
+  - =--title ["title"]= is the title to use for the exported artifact
 
 
 * Render a brief
