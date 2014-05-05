@@ -22,13 +22,15 @@
   
   Scopes include:
   - =full=: (Default) All sections with any tag are rendered.
-  - =development=: All sections without tags and those with =dev= and
-    =future= tags are rendered
-  - =marketing=: All sections without tags and those with
-    =competition= and =future= tags are rendered
+  - =development=: All sections without any tags and those with
+    =development=, =details= and =future= tags are rendered
+  - =marketing=: All sections without tags and those with =marketing= and 
+    =details=, and =future= tags are rendered
   - =support=: All sections without tags and those with =details=
     tags are rendered
   - =documentation=: All sections without tags and those with =details=
+    tags are rendered
+  - =public=: All sections without tags and those with =details=
     tags are rendered
   
   Formats include:

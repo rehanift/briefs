@@ -80,8 +80,9 @@ while test $# -gt 0; do
                 emacs --batch -Q \
                     --visit=./exports/$filename \
                     -l ~/.briefs/env.el \
+                    -l ~/.briefs/functions.el \
                     -l ~/.briefs/scopes/$render_scope.el \
-                    -l ~/.briefs/formats/$render_format.el
+                    -l ~/.briefs/formats/$render_format.el 
                 killall soffice
                 
                 exit 0;
