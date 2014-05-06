@@ -43,6 +43,12 @@ while test $# -gt 0; do
                     echo "File already exists: $filename"
                     exit 0;
                 fi
+
+                git rev-parse
+                if [ $? -ne 0 ];then
+                    git init
+                fi
+
                 cp ~/.briefs/base.org ./$filename
                 sed -i.bak "s/__title__/$title/" ./$filename
                 rm $filename.bak
