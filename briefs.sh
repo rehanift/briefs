@@ -54,14 +54,19 @@ while test $# -gt 0; do
                     exit 0;
                 fi
 
-                mkdir -p ./exports/
+                brief_name=${filename%.*}
+
+                mkdir -p ./exports/$brief_name
                 
                 if [ ! -d $orgmode_lisp_dir ]; then
                     echo "This is not a valid org-mode lisp directory: $orgmode_lisp_dir"
                     exit 0;
                 fi
                 
-                cp $filename ./exports/$filename
+                scoped_brief_name=$brief_name.$render_scope.org
+                scoped_brief_path=./exports/$brief_name/$scoped_brief_name
+
+                cp $filename $scoped_brief_path
 
                 if [ ! -f ~/.briefs/scopes/$render_scope.el ]; then
                     echo "Could not find scope: $render_scope"
@@ -78,7 +83,7 @@ while test $# -gt 0; do
                 fi
 
                 emacs --batch -Q \
-                    --visit=./exports/$filename \
+                    --visit=$scoped_brief_path \
                     -l ~/.briefs/env.el \
                     -l ~/.briefs/functions.el \
                     -l ~/.briefs/scopes/$render_scope.el \
