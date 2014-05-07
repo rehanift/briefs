@@ -47,6 +47,9 @@ while test $# -gt 0; do
                 git rev-parse
                 if [ $? -ne 0 ];then
                     git init
+                    cp ~/.briefs/gitignore-template .gitignore
+                    git add .gitignore
+                    git commit -m "Added gitignore"
                 fi
 
                 cp ~/.briefs/base.org ./$filename
