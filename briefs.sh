@@ -73,6 +73,11 @@ while test $# -gt 0; do
                 fi
                 
                 scoped_brief_name=$brief_name.$render_scope.org
+
+                if [ $render_format = "presentation" ]; then
+                    scoped_brief_name=$brief_name.$render_scope.deck.org
+                fi
+                
                 scoped_brief_path=./exports/$brief_name/$scoped_brief_name
 
                 cp $filename $scoped_brief_path
@@ -99,6 +104,10 @@ while test $# -gt 0; do
                     -l ~/.briefs/formats/$render_format.el 
                 killall soffice
                 
+                if [ $render_format = "presentation" ]; then
+                    cp -r ~/.briefs/reveal.js-dist ./exports/$brief_name/reveal.js
+                fi                
+
                 exit 0;
             else
                 echo "No Args"
