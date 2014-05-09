@@ -1,0 +1,27 @@
+  #+NAME: last_commit_author
+  #+BEGIN_SRC emacs-lisp :exports none :tangle no :var current-file=(buffer-file-name)
+    (setq path-pieces (split-string current-file "/"))
+    (setq filename (last path-pieces))
+    (setq file-pieces (split-string (first filename) "\\."))
+    (setq brief-filename (concat (first file-pieces) "." (first (last file-pieces))))
+    (shell-command-to-string (format "git log --pretty=format:'%%an' -n 1 -- ../../%s" brief-filename))
+  #+END_SRC
+
+  #+NAME: last_commit_date
+  #+BEGIN_SRC emacs-lisp :exports none :tangle no :var current-file=(buffer-file-name)
+    (setq path-pieces (split-string current-file "/"))
+    (setq filename (last path-pieces))
+    (setq file-pieces (split-string (first filename) "\\."))
+    (setq brief-filename (concat (first file-pieces) "." (first (last file-pieces))))
+    (shell-command-to-string (format "git log --pretty=format:'%%ad' -n 1 -- ../../%s" brief-filename))
+  #+END_SRC
+
+  #+NAME: last_commit_sha
+  #+BEGIN_SRC emacs-lisp :exports none :tangle no :var current-file=(buffer-file-name)
+    (setq path-pieces (split-string current-file "/"))
+    (setq filename (last path-pieces))
+    (setq file-pieces (split-string (first filename) "\\."))
+    (setq brief-filename (concat (first file-pieces) "." (first (last file-pieces))))
+    (shell-command-to-string (format "git log --pretty=format:'%%h' -n 1 -- ../../%s" brief-filename))
+  #+END_SRC
+

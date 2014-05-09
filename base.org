@@ -9,3 +9,8 @@
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE: en
+
+* Version  
+  - Last Modified By: call_last_commit_author()
+  - Last Modified Date: call_last_commit_date()
+  - Current SHA: call_last_commit_sha()

@@ -9,3 +9,6 @@ tags in `lst` AND headlines that have no tags"
     (setq org-export-exclude-tags all-buffer-tags)  
     )
   )
+
+(setq org-confirm-babel-evaluate nil)
+(org-babel-lob-ingest "~/.briefs/babel.org")
