@@ -87,3 +87,4 @@
     - =doc=: First creates an ODT export then creates a =docx= file.
     - =odt=: Creates an ODT export
     - =txt=: Creates a TXT export
+    - =md=: Creates a GitHub Flavored Markdown export
