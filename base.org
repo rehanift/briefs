@@ -5,7 +5,7 @@
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+OPTIONS: author:nil c:nil creator:comment d:(not "LOGBOOK")
 #+OPTIONS: date:nil e:t email:nil f:t inline:t num:nil p:nil pri:nil
-#+OPTIONS: stat:t tags:t tasks:t tex:t timestamp:t toc:t todo:t |:t
+#+OPTIONS: stat:t tasks:t tex:t timestamp:t todo:t |:t
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE: en
